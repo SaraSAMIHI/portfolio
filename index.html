@@ -712,28 +712,37 @@ footer {
 </section>
 
 <footer>
-  &copy; 2026 Sara Samihi
+  &copy; 2025 Sara Samihi
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 // Navbar scroll effect
 const nav = document.getElementById('nav');
-window.addEventListener('scroll', () => {
+window.addEventListener('scroll', function() {
   nav.classList.toggle('scrolled', window.scrollY > 80);
 });
 
 // Scroll animations
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
+const observer = new IntersectionObserver(function(entries) {
+  entries.forEach(function(e) {
     if (e.isIntersecting) {
       e.target.classList.add('visible');
     }
   });
 }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
 
-document.querySelectorAll('.fade-in, .fade-in-left, .fade-in-right, .stagger').forEach(el => {
+document.querySelectorAll('.fade-in, .fade-in-left, .fade-in-right, .stagger').forEach(function(el) {
   observer.observe(el);
 });
 
 // Smooth scroll for nav links
-document.querySelectorAll('nav a').forEach(a
+document.querySelectorAll('nav a').forEach(function(a) {
+  a.addEventListener('click', function(e) {
+    e.preventDefault();
+    var target = document.querySelector(a.getAttribute('href'));
+    if (target) target.scrollIntoView({ behavior: 'smooth' });
+  });
+});
+</script>
+</body>
+</html>
